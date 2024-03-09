@@ -36,4 +36,12 @@ class DBManager:
         conn.close()
         return answer
 
-
+    @staticmethod
+    def get_vacancies_with_higher_salary():
+        """Получает список всех вакансий, у которых зарплата выше средней по всем вакансиям"""
+        with psycopg2.connect(dbname='postgres', **params_db) as conn:
+            with conn.cursor() as cur:
+                cur.execute('SELECT vacancy_name from vacancies WHERE salary > (SELECT AVG(salary) from vacancies)')
+                answer = cur.fetchall()
+        conn.close()
+        return answer
