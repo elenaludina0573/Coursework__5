@@ -47,3 +47,28 @@ class HH_api_db:
                     {'url': vacancy['alternate_url'], 'salary': salary,
                      'vacancy_name': vacancy['name'], 'employer': employer})
         return vacancies_list
+
+    def employers_to_db(self):
+        """Сохранение работодателей в БД"""
+        with psycopg2.connect(dbname='postgres', **params_db) as conn:
+            with conn.cursor() as cur:
+                for employer in self.employers_dict:
+                    try:
+                        cur.execute(
+                            f"INSERT INTO companies values ('{int(self.employers_dict[employer])}', '{employer}')")
+                    except Exception:
+                        pass
+        conn.commit()
+        conn.close()
+
+    def vacancies_to_db(self):
+        """Сохранение вакансий в БД"""
+        with psycopg2.connect(dbname='postgres', **params_db) as conn:
+            with conn.cursor() as cur:
+                for vacancy in self.get_vacancies():
+                    cur.execute(
+                        f"INSERT INTO vacancies(vacancy_name, salary, company_name, vacancy_url) values "
+                        f"('{vacancy['vacancy_name']}', '{int(vacancy['salary'])}', "
+                        f"'{vacancy['employer']}', '{vacancy['url']}')")
+        conn.commit()
+        conn.close()
