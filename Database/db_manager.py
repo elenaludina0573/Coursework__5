@@ -25,3 +25,15 @@ class DBManager:
                 answer = cur.fetchall()
         conn.close()
         return answer
+
+    @staticmethod
+    def get_avg_salary():
+        """Получает среднюю зарплату по вакансиям"""
+        with psycopg2.connect(dbname='postgres', **params_db) as conn:
+            with conn.cursor() as cur:
+                cur.execute('SELECT avg(salary) from vacancies')
+                answer = cur.fetchall()
+        conn.close()
+        return answer
+
+
