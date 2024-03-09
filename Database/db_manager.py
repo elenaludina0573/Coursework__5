@@ -15,3 +15,13 @@ class DBManager:
                 answer = cur.fetchall()
         conn.close()
         return answer
+
+    @staticmethod
+    def get_all_vacancies():
+        """Получает список всех вакансий"""
+        with psycopg2.connect(dbname='postgres', **params_db) as conn:
+            with conn.cursor() as cur:
+                cur.execute('SELECT * from vacancies')
+                answer = cur.fetchall()
+        conn.close()
+        return answer
