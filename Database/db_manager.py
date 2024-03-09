@@ -45,3 +45,13 @@ class DBManager:
                 answer = cur.fetchall()
         conn.close()
         return answer
+
+    @staticmethod
+    def get_vacancies_with_keyword(keyword):
+        """Получает список всех вакансий, в названии которых содержатся переданные в метод слова"""
+        with psycopg2.connect(dbname='postgres', **params_db) as conn:
+            with conn.cursor() as cur:
+                cur.execute(f"SELECT vacancy_name from vacancies WHERE vacancy_name LIKE '%{keyword}%'")
+                answer = cur.fetchall()
+        conn.close()
+        return answer
