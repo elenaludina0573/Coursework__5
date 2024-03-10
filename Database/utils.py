@@ -19,7 +19,7 @@ def create_database(database_name, params):
 
 
 def create_table(params):
-    """Создание таблиц companies и vacancies в созданной базе данных - HH_vacancy"""
+    """Создание таблиц companies и vacancies в созданной базе данных"""
 
     conn = psycopg2.connect(dbname='postgres', **params)
     with conn.cursor() as cur:
