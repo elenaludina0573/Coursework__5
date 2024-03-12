@@ -11,25 +11,7 @@
    user=YourUser
    password=YourPassword
    port=YourPort
- * Словарь с данными для подключения к БД мы получаем из функции, находящейся в файле ___config.py___:
----
-from configparser import ConfigParser
----
-def config(filename="database.ini", section="postgresql"):
-    _# create a parser_
-    parser = ConfigParser()
-    _# read config file_
-    parser.read(filename)
-    db = {}
-    if parser.has_section(section):
-        params = parser.items(section)
-        for param in params:
-            db[param[0]] = param[1]
-    else:
-        raise Exception(
-            'Section {0} is not found in the {1} file.'.format(section, filename))
-    return db
----
+ * Словарь с данными для подключения к БД мы получаем из функции, находящейся в файле ___config.py___
 
 ## Основные шаги проекта
 
