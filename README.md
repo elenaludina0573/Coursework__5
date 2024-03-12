@@ -12,13 +12,13 @@
    password=YourPassword
    port=YourPort
  * Словарь с данными для подключения к БД мы получаем из функции, находящейся в файле ___config.py___:
-'''
+---
 from configparser import ConfigParser
-
+---
 def config(filename="database.ini", section="postgresql"):
-    # create a parser
+    _# create a parser_
     parser = ConfigParser()
-    # read config file
+    _# read config file_
     parser.read(filename)
     db = {}
     if parser.has_section(section):
@@ -29,7 +29,7 @@ def config(filename="database.ini", section="postgresql"):
         raise Exception(
             'Section {0} is not found in the {1} file.'.format(section, filename))
     return db
-'''
+---
 
 ## Основные шаги проекта
 
