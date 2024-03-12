@@ -1,5 +1,4 @@
 from Database.getting_data_hh import HH_api_db
-from Database.db_manager import DBManager
 from config import config
 from Database.utils import create_database, create_table
 
@@ -15,8 +14,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-    #print(DBManager.get_all_vacancies())
-    # DBManager.get_avg_salary()
-    #print(DBManager.get_vacancies_with_keyword('курьер'))
-    # DBManager.get_companies_and_vacancies_count()
-    # DBManager.get_vacancies_with_higher_salary()
